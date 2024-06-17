@@ -109,3 +109,133 @@ for i in ['GDP','Total expenditure',' thinness  1-19 years', ' thinness 5-9 year
     sns.boxplot(life[i])
     plt.show()
 ```
+```
+for i in ['GDP','Total expenditure',' thinness  1-19 years', ' thinness 5-9 years' ]:
+    lw,uw=wisker(life[i])
+    life[i]=np.where(life[i]<lw,lw,life[i])
+    life[i]=np.where(life[i]>uw,uw,life[i])
+```
+```for i in ['GDP','Total expenditure',' thinness  1-19 years', ' thinness 5-9 years' ]:
+    sns.boxplot(life[i])
+    plt.show()
+```
+## import plotly.express as px
+```
+fig = px.pie(life, names='Status')
+fig
+```
+## import plotly.graph_objects as go
+```
+go.Figure(
+    data=[go.Histogram(x=life["Life expectancy "], xbins={"start": 36.0, "end": 90.0, "size": 1.0})],
+    layout=go.Layout(title="Histogram of Life expectancy", yaxis={"title": "Count"}, bargap=0.05),
+)
+```
+```
+go.Figure(
+    data=[go.Histogram(x=life["Adult Mortality"], xbins={"start": 36.0, "end": 90.0, "size": 1.0})],
+    layout=go.Layout(title="Histogram of Adult Mortality", yaxis={"title": "Count"}, bargap=0.05),
+)
+```
+## CORRELATION
+```
+life_corr = life.corr()
+
+fig = px.imshow(life_corr,
+                labels=dict(x="Features", y="Features"),
+                x=life_corr.columns,
+                y=life_corr.columns,
+                color_continuous_scale="Blues",
+                color_continuous_midpoint=0)
+
+fig.update_layout(
+    title="Correlation Heatmap",
+    width=800,
+    height=500,
+    xaxis_showgrid=False,
+    yaxis_showgrid=False,
+    yaxis_autorange='reversed')
+
+fig.show()
+```
+
+## CHOOSING A FEATURE
+```
+#Choosing x and y values
+
+#x is our features except diagnosis (classification columns) 
+#y is diagnosis
+x = life[['Schooling','Income composition of resources',' HIV/AIDS',' BMI ','Adult Mortality']]
+y = life['Life expectancy ']
+
+```
+## TEST AND TRAIN
+```
+from sklearn.model_selection import train_test_split
+```
+```
+X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+```
+```
+X_train
+X_test
+y_test
+y_train
+```
+
+## SCALING 
+```
+#scalling
+from sklearn.preprocessing import LabelEncoder,StandardScaler
+```
+```
+sdc = StandardScaler()
+```
+```
+X_train = sdc.fit_transform(X_train)
+X_test = sdc.transform(X_test)
+```
+```
+X_test
+X_train
+y_test
+```
+## IMPORT LINEAR REGRESSION
+```
+from sklearn.linear_model import LinearRegression
+```
+### LINEAR REGRESSION
+```
+LinearRegression?
+```
+```
+model= LinearRegression(n_jobs=15)
+```
+```
+model.fit(X_train, y_train)
+```
+```
+model.score(X_test, y_test)
+```
+# IMPORTING THE SVM
+```
+from sklearn import svm
+from sklearn.svm import SVC
+from sklearn.svm import SVR
+from sklearn.metrics import mean_squared_error
+```
+### STANDARD SCALER
+```
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+```
+```
+regressor = SVR(kernel='rbf')
+```
+```
+regressor?
+```
+```
+regressor.fit(X_train, y_train)
+```
