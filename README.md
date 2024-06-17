@@ -132,14 +132,15 @@ go.Figure(
     layout=go.Layout(title="Histogram of Life expectancy", yaxis={"title": "Count"}, bargap=0.05),
 )
 ```
-![LIFE GRAHP](https://github.com/adepel80/Life-expectancy/assets/123180341/4cb22135-ab36-4429-aece-2c0d07fea64e)
+![LIFE HISTO](https://github.com/adepel80/Life-expectancy/assets/123180341/dca279b9-d5c1-4748-ac1c-6abe3ce444fe)
+
 ```
 go.Figure(
     data=[go.Histogram(x=life["Adult Mortality"], xbins={"start": 36.0, "end": 90.0, "size": 1.0})],
     layout=go.Layout(title="Histogram of Adult Mortality", yaxis={"title": "Count"}, bargap=0.05),
 )
 ```
-![LIFE HISTO](https://github.com/adepel80/Life-expectancy/assets/123180341/dca279b9-d5c1-4748-ac1c-6abe3ce444fe)
+![LIFE GRAHP](https://github.com/adepel80/Life-expectancy/assets/123180341/4cb22135-ab36-4429-aece-2c0d07fea64e)
 
 ## CORRELATION
 ```
