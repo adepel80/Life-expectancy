@@ -24,6 +24,26 @@ plt.style.use ("dark_background")
 
 import os
 ```
+## DICTIONARIES
+Country: Country under study
+Year: year
+Status: Status of the country's development
+Population: Population of country
+Hepatitis B: Percentage of people finally one year old who were immunized against hepatitis B
+Measles: The number of reported measles cases per 1000 people
+Polio: Percentage of 1-year-olds immunized against polio
+Diphtheria: Percentage of people finally one year old who were immunized against diphtheria
+HIV/AIDS: The number of deaths caused by AIDS of the last 4-year-olds who were born alive per 1000 people
+infant deaths: The number of infant deaths per 1000 people
+under-five deaths: The number of deaths of people under 5 years old per 1000 people
+Total expenditure: The ratio of government medical-health expenses to total government expenses in percentage
+GDP: Gross domestic product
+BMI: The average body mass index of the entire population of the country
+thinness 1-19 years: Prevalence of thinness among people 19 years old in percentage
+Alcohol: Liters of alcohol consumption among people over 15 years old
+Schooling: The number of years that people study
+Life expectancy: Country life expectancy
+
 # LOADING THE DATASET
 ```
 life = pd.read_csv('life.csv')
@@ -74,6 +94,7 @@ plt.figure(figsize=(15,15))
 sns.heatmap(s, annot=True)
 ```
 ## IMPORTING KNN IMPUTERS FOR NULL VALUES (FILL ALL NULL VALUES)
+Importing the libraries that auto fill all null values
 ```
 from sklearn.impute import KNNImputer
 impute = KNNImputer()
@@ -84,6 +105,7 @@ for i in life.select_dtypes(include='number').columns:
     life[i]=impute.fit_transform(life[[i]])
 ```
 ## OUTLIER
+checking the outliers
 ```
 ''' whiskers : the vertical lines extending to the most extreme, non-outlier data points.
 q1 means 25, q3 means 75 '''
@@ -120,6 +142,7 @@ for i in ['GDP','Total expenditure',' thinness  1-19 years', ' thinness 5-9 year
     plt.show()
 ```
 ## import plotly.express as px
+Using piechart to check the status into the developed and the developing with developed having total percentage of 17.4% and developing has the total percentage of 82.6%
 ```
 fig = px.pie(life, names='Status')
 fig
