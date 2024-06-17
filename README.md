@@ -68,13 +68,18 @@ s=life.select_dtypes(include='number').corr()
 ```
 sns.heatmap(s)
 ```
-# SUBPLOT FOR HEATAP
+# SUBPLOT FOR HEATMAP
 ```
 plt.figure(figsize=(15,15))
 sns.heatmap(s, annot=True)
 ```
-# IMPORTING KNN IMPUTERS FOR NULL VALUES
+# IMPORTING KNN IMPUTERS FOR NULL VALUES (FILL ALL NULL VALUES)
 ```
 from sklearn.impute import KNNImputer
 impute = KNNImputer()
+```
+# FILL ALL NULL VALUES
+```
+for i in life.select_dtypes(include='number').columns:
+    life[i]=impute.fit_transform(life[[i]])
 ```
