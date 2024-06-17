@@ -59,27 +59,53 @@ for i in life.select_dtypes(include='number').columns:
     sns.boxplot(data=life, x=i)
     plt.show()
 ```
-# correlation with heatmap to interprete the relation and multicolliniarity
+## correlation with heatmap to interprete the relation and multicolliniarity
 ```
 s=life.select_dtypes(include='number').corr()
 ```
 
-# HEATMAP
+## HEATMAP
 ```
 sns.heatmap(s)
 ```
-# SUBPLOT FOR HEATMAP
+## SUBPLOT FOR HEATMAP
 ```
 plt.figure(figsize=(15,15))
 sns.heatmap(s, annot=True)
 ```
-# IMPORTING KNN IMPUTERS FOR NULL VALUES (FILL ALL NULL VALUES)
+## IMPORTING KNN IMPUTERS FOR NULL VALUES (FILL ALL NULL VALUES)
 ```
 from sklearn.impute import KNNImputer
 impute = KNNImputer()
 ```
-# FILL ALL NULL VALUES
+## FILL ALL NULL VALUES
 ```
 for i in life.select_dtypes(include='number').columns:
     life[i]=impute.fit_transform(life[[i]])
+```
+## OUTLIER
+```
+''' whiskers : the vertical lines extending to the most extreme, non-outlier data points.
+q1 means 25, q3 means 75 '''
+
+def wisker(col):
+    q1, q3=np.percentile(col,[25,75])
+    iqr=q3-q1
+    lw=q1-1.5*iqr
+    uw=q3+1.5*iqr
+    return lw,uw
+```
+## OUTLIER FOR GDP
+```
+wisker(life['GDP'])
+```
+## 
+```
+for i in ['GDP','Total expenditure',' thinness  1-19 years', ' thinness 5-9 years' ]:
+    lw,uw=wisker(life[i])
+    life[i]=np.where(life[i]<lw,lw,life[i])
+    life[i]=np.where(life[i]>uw,uw,life[i])
+for i in ['GDP','Total expenditure',' thinness  1-19 years', ' thinness 5-9 years' ]:
+    sns.boxplot(life[i])
+    plt.show()
 ```
