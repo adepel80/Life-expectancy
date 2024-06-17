@@ -124,6 +124,7 @@ for i in ['GDP','Total expenditure',' thinness  1-19 years', ' thinness 5-9 year
 fig = px.pie(life, names='Status')
 fig
 ```
+![LIFE PIE](https://github.com/adepel80/Life-expectancy/assets/123180341/84af6f23-fdae-4161-a01d-dd166c8e7a54)
 ## import plotly.graph_objects as go
 ```
 go.Figure(
@@ -131,12 +132,15 @@ go.Figure(
     layout=go.Layout(title="Histogram of Life expectancy", yaxis={"title": "Count"}, bargap=0.05),
 )
 ```
+![LIFE GRAHP](https://github.com/adepel80/Life-expectancy/assets/123180341/4cb22135-ab36-4429-aece-2c0d07fea64e)
 ```
 go.Figure(
     data=[go.Histogram(x=life["Adult Mortality"], xbins={"start": 36.0, "end": 90.0, "size": 1.0})],
     layout=go.Layout(title="Histogram of Adult Mortality", yaxis={"title": "Count"}, bargap=0.05),
 )
 ```
+![LIFE HISTO](https://github.com/adepel80/Life-expectancy/assets/123180341/dca279b9-d5c1-4748-ac1c-6abe3ce444fe)
+
 ## CORRELATION
 ```
 life_corr = life.corr()
@@ -158,6 +162,7 @@ fig.update_layout(
 
 fig.show()
 ```
+![LIFE CORRE FEA](https://github.com/adepel80/Life-expectancy/assets/123180341/41b28d99-b361-48f7-b612-17d3848d117a)
 
 ## CHOOSING A FEATURE
 ```
@@ -217,6 +222,7 @@ model.fit(X_train, y_train)
 ```
 model.score(X_test, y_test)
 ```
+![LIFE LINERA RESUKT](https://github.com/adepel80/Life-expectancy/assets/123180341/2a4fe5eb-b404-492c-b04a-53fc376fe49d)
 # IMPORTING THE SVM
 ```
 from sklearn import svm
